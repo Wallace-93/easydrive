@@ -83,7 +83,11 @@ export default function Connexion() {
             <p className="text-center text-sm pt-4 border-t" style={{ color: "var(--color-text-muted)", borderColor: "var(--color-border)" }}>
               Pas encore de compte ?{" "}
               <Link href="/inscription" className="font-semibold" style={{ color: "var(--color-primary)", textDecoration: "none" }}>
-                Créer un compte
+                Créer un compte élève
+              </Link>
+              {" · "}
+              <Link href="/inscription-moniteur" className="font-semibold" style={{ color: "var(--color-primary)", textDecoration: "none" }}>
+                Je suis moniteur
               </Link>
             </p>
           </div>

@@ -115,10 +115,13 @@ export default function DashboardMoniteur() {
             <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
             <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
           </Link>
-          <button onClick={() => { createClient().auth.signOut().then(() => window.location.replace("/connexion")) }}
-            className="text-sm font-medium" style={{ color: "var(--color-text-muted)", background: "none", border: "none", cursor: "pointer" }}>
-            Se déconnecter
-          </button>
+          <div className="flex items-center gap-4">
+            <Link href="/profil" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Mon profil</Link>
+            <button onClick={() => { createClient().auth.signOut().then(() => window.location.replace("/connexion")) }}
+              className="text-sm font-medium" style={{ color: "var(--color-text-muted)", background: "none", border: "none", cursor: "pointer" }}>
+              Se déconnecter
+            </button>
+          </div>
         </div>
       </header>
 
@@ -148,8 +151,10 @@ export default function DashboardMoniteur() {
           ))}
         </div>
 
-        {/* Action rapide messages */}
-        <div className="mb-8">
+
+
+        {/* Actions rapides */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <Link href="/messages" style={{ textDecoration: "none" }}>
             <div className="rounded-2xl p-5 transition-all" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
               onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-primary)")}
@@ -163,6 +168,23 @@ export default function DashboardMoniteur() {
                 <div>
                   <p className="text-sm font-bold">Mes messages</p>
                   <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>Discuter avec vos élèves</p>
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link href="/profil" style={{ textDecoration: "none" }}>
+            <div className="rounded-2xl p-5 transition-all" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-primary)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-border)")}>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "var(--color-surface-hover)", color: "var(--color-text-secondary)" }}>
+                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-bold">Mon profil</p>
+                  <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>Modifier mes informations</p>
                 </div>
               </div>
             </div>
