@@ -278,10 +278,18 @@ export default function DashboardEleve() {
                         </p>
                       </div>
                     </div>
-                    <span className="text-xs font-semibold px-3 py-1 rounded-full"
-                      style={{ background: statut.fond, color: statut.couleur }}>
-                      {statut.label}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold px-3 py-1 rounded-full"
+                        style={{ background: statut.fond, color: statut.couleur }}>
+                        {statut.label}
+                      </span>
+                      {r.statut === "terminee" && (
+                        <Link href={`/avis/${r.moniteur_id}`} className="text-xs font-semibold px-3 py-1 rounded-full"
+                          style={{ background: "var(--color-primary-light)", color: "var(--color-primary-dark)", textDecoration: "none" }}>
+                          ⭐ Évaluer
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 )
               })}
