@@ -152,6 +152,26 @@ export default function DashboardEleve() {
           ))}
         </div>
 
+        {/* Matching */}
+        <Link href="/matching" style={{ textDecoration: "none" }}>
+          <div className="rounded-2xl p-6 mb-6 transition-all" style={{ background: "linear-gradient(135deg, var(--color-primary), #009966)", border: "none" }}
+            onMouseEnter={e => (e.currentTarget.style.transform = "translateY(-2px)", e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,179,125,0.3)")}
+            onMouseLeave={e => (e.currentTarget.style.transform = "none", e.currentTarget.style.boxShadow = "none")}>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.2)" }}>
+                <span className="text-2xl">✨</span>
+              </div>
+              <div>
+                <p className="text-base font-bold" style={{ color: "white" }}>Trouver mon moniteur idéal</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.8)" }}>Recommandation personnalisée basée sur vos besoins et les avis des élèves</p>
+              </div>
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5" className="flex-shrink-0 ml-auto">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </Link>
+
         {/* Actions rapides */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <Link href="/resultats" style={{ textDecoration: "none" }}>

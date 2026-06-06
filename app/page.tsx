@@ -127,6 +127,11 @@ export default function Home() {
                 desc: "Paris et toute la grande couronne : de Cergy à Melun, de Versailles à Meaux. Là où les autres sont absents.",
               },
               {
+                icon: "✨",
+                titre: "Matching intelligent",
+                desc: "Notre algorithme analyse vos besoins, vos disponibilités et les avis des élèves pour vous recommander les 3 moniteurs les plus adaptés.",
+              },
+              {
                 icon: "💬",
                 titre: "Messagerie directe",
                 desc: "Communiquez directement avec votre moniteur. Pas de standard téléphonique, pas de formulaire, un vrai échange.",
