@@ -49,38 +49,44 @@ type Moniteur = {
     prenom: string
     nom: string
     avatar_url: string | null
-  }
+  } | null
 }
 
 export default function Resultats() {
   const [moniteurs, setMoniteurs] = useState<Moniteur[]>([])
   const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState<any>(null)
   const [filtreZone, setFiltreZone] = useState("")
   const [filtreBoite, setFiltreBoite] = useState("")
   const [filtrePrixMax, setFiltrePrixMax] = useState("")
   const [recherche, setRecherche] = useState("")
 
   useEffect(() => {
-    fetchMoniteurs()
-  }, [])
-
-  async function fetchMoniteurs() {
     const supabase = createClient()
-    try {
-      const { data, error } = await supabase
-        .from("moniteurs")
-        .select("*, profiles (prenom, nom, avatar_url)")
-        .eq("verifie", true)
-        .order("note_moyenne", { ascending: false })
 
-      if (error) throw error
-      setMoniteurs(data || [])
-    } catch (err) {
-      console.error("Erreur chargement moniteurs :", err)
-    } finally {
-      setLoading(false)
+    supabase.auth.getSession().then(({ data }) => {
+      setUser(data.session?.user ?? null)
+    })
+
+    fetchMoniteurs()
+
+    async function fetchMoniteurs() {
+      try {
+        const { data, error } = await supabase
+          .from("moniteurs")
+          .select("*, profiles:user_id (prenom, nom, avatar_url)")
+          .eq("verifie", true)
+          .order("note_moyenne", { ascending: false })
+
+        if (error) throw error
+        setMoniteurs(data || [])
+      } catch (err) {
+        console.error("Erreur chargement moniteurs :", err)
+      } finally {
+        setLoading(false)
+      }
     }
-  }
+  }, [])
 
   const moniteursFiltres = moniteurs.filter(m => {
     if (filtreZone && m.zone !== filtreZone) return false
@@ -89,7 +95,7 @@ export default function Resultats() {
     if (filtrePrixMax && m.tarif_horaire > parseInt(filtrePrixMax)) return false
     if (recherche) {
       const q = recherche.toLowerCase()
-      const nom = `${m.profiles.prenom} ${m.profiles.nom}`.toLowerCase()
+      const nom = `${m.profiles?.prenom || ""} ${m.profiles?.nom || ""}`.toLowerCase()
       const ville = (m.ville_principale || "").toLowerCase()
       const lieux = (m.lieux_supplementaires || []).join(" ").toLowerCase()
       if (!nom.includes(q) && !ville.includes(q) && !lieux.includes(q) && !m.zone.includes(q)) return false
@@ -103,7 +109,6 @@ export default function Resultats() {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--color-background)" }}>
-      {/* En-tête */}
       <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
@@ -111,22 +116,28 @@ export default function Resultats() {
             <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
           </Link>
           <div className="flex items-center gap-3">
-            <Link href="/connexion" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Se connecter</Link>
-            <Link href="/inscription" className="btn-primary text-sm" style={{ textDecoration: "none", padding: "10px 20px" }}>S'inscrire</Link>
+            {user ? (
+              <Link href="/dashboard" className="btn-primary text-sm" style={{ textDecoration: "none", padding: "10px 20px" }}>
+                Mon espace →
+              </Link>
+            ) : (
+              <>
+                <Link href="/connexion" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Se connecter</Link>
+                <Link href="/inscription" className="btn-primary text-sm" style={{ textDecoration: "none", padding: "10px 20px" }}>S'inscrire</Link>
+              </>
+            )}
           </div>
         </div>
       </header>
 
       <div className="max-w-5xl mx-auto px-4 py-8">
-        {/* Titre */}
         <h1 className="text-2xl sm:text-3xl font-bold mb-2" style={{ fontFamily: "var(--font-display)" }}>
           Trouvez votre moniteur en <span style={{ color: "var(--color-primary)" }}>Île-de-France</span>
         </h1>
         <p className="text-sm mb-8" style={{ color: "var(--color-text-secondary)" }}>
-          {moniteurs.length} moniteur{moniteurs.length > 1 ? "s" : ""} vérifié{moniteurs.length > 1 ? "s" : ""} disponible{moniteurs.length > 1 ? "s" : ""}
+          {moniteursFiltres.length} moniteur{moniteursFiltres.length > 1 ? "s" : ""} vérifié{moniteursFiltres.length > 1 ? "s" : ""} disponible{moniteursFiltres.length > 1 ? "s" : ""}
         </p>
 
-        {/* Barre de recherche + filtres */}
         <div className="rounded-2xl p-4 sm:p-6 mb-8" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
           <div className="mb-4">
             <input type="text" placeholder="Rechercher par nom, ville ou lieu…" value={recherche}
@@ -154,7 +165,6 @@ export default function Resultats() {
           </div>
         </div>
 
-        {/* Résultats */}
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
             <svg className="animate-spin mb-3" style={{ color: "var(--color-primary)", width: 32, height: 32 }} fill="none" viewBox="0 0 24 24">
@@ -184,39 +194,30 @@ export default function Resultats() {
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--color-primary)"; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,179,125,0.1)" }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--color-border)"; e.currentTarget.style.boxShadow = "none" }}>
                   <div className="flex items-start gap-4">
-                    {/* Avatar */}
                     <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 text-lg font-bold"
                       style={{ background: "var(--color-primary-light)", color: "var(--color-primary)" }}>
-                      {m.profiles.avatar_url
+                      {m.profiles?.avatar_url
                         ? <img src={m.profiles.avatar_url} alt="" className="w-14 h-14 rounded-full object-cover" />
-                        : getInitiales(m.profiles.prenom, m.profiles.nom)
+                        : getInitiales(m.profiles?.prenom || "?", m.profiles?.nom || "?")
                       }
                     </div>
-
                     <div className="flex-1 min-w-0">
-                      {/* Nom + tarif */}
                       <div className="flex items-start justify-between gap-2">
-                        <h3 className="text-base font-bold">{m.profiles.prenom} {m.profiles.nom}</h3>
+                        <h3 className="text-base font-bold">{m.profiles?.prenom || ""} {m.profiles?.nom || ""}</h3>
                         <span className="text-sm font-bold flex-shrink-0" style={{ color: "var(--color-primary)" }}>
                           {m.tarif_horaire} €/h
                         </span>
                       </div>
-
-                      {/* Zone + expérience */}
                       <p className="text-sm mt-0.5" style={{ color: "var(--color-text-secondary)" }}>
                         {ZONES_LABELS[m.zone] || m.zone}
                         {m.ville_principale && ` · ${m.ville_principale}`}
                         {m.experience_annees > 0 && ` · ${m.experience_annees} an${m.experience_annees > 1 ? "s" : ""} d'exp.`}
                       </p>
-
-                      {/* Lieux supplémentaires */}
                       {m.lieux_supplementaires && m.lieux_supplementaires.length > 0 && (
                         <p className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
                           Aussi disponible à : {m.lieux_supplementaires.join(", ")}
                         </p>
                       )}
-
-                      {/* Note */}
                       <div className="flex items-center gap-1 mt-2">
                         {[...Array(5)].map((_, i) => (
                           <svg key={i} width="14" height="14" fill={i < Math.floor(m.note_moyenne) ? "#F59E0B" : "none"} viewBox="0 0 24 24"
@@ -228,8 +229,6 @@ export default function Resultats() {
                           {m.note_moyenne > 0 ? `${m.note_moyenne.toFixed(1)} (${m.nb_avis} avis)` : "Nouveau"}
                         </span>
                       </div>
-
-                      {/* Spécialités */}
                       {m.specialites && m.specialites.length > 0 && (
                         <div className="flex flex-wrap gap-1.5 mt-3">
                           {m.specialites.slice(0, 3).map(s => (
