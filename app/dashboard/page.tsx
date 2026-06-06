@@ -2,14 +2,12 @@
 
 export const dynamic = "force-dynamic"
 
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 
 export default function Dashboard() {
-  const [info, setInfo] = useState("Chargement de votre espace…")
-
   useEffect(() => {
-    async function load() {
+    async function redirect() {
       const supabase = createClient()
       const { data: { session } } = await supabase.auth.getSession()
 
@@ -20,34 +18,25 @@ export default function Dashboard() {
 
       const { data: profile } = await supabase
         .from("profiles")
-        .select("prenom, nom, role")
+        .select("role")
         .eq("id", session.user.id)
         .single()
 
-      if (!profile) {
-        window.location.replace("/connexion")
-        return
+      if (profile?.role === "moniteur") {
+        window.location.replace("/dashboard/moniteur")
+      } else {
+        window.location.replace("/dashboard/eleve")
       }
-
-      setInfo(`Bienvenue, ${profile.prenom} ${profile.nom} — Rôle : ${profile.role}`)
     }
-    load()
+    redirect()
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4" style={{ background: "var(--color-background)" }}>
-      <h1 className="text-2xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>Tableau de bord</h1>
-      <p className="text-base mb-8" style={{ color: "var(--color-primary)" }}>{info}</p>
-      <button
-        onClick={() => {
-          const supabase = createClient()
-          supabase.auth.signOut().then(() => window.location.replace("/connexion"))
-        }}
-        className="text-sm font-medium px-6 py-3 rounded-xl"
-        style={{ background: "var(--color-error-light)", color: "var(--color-error)", border: "none", cursor: "pointer" }}
-      >
-        Se déconnecter
-      </button>
+    <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--color-background)" }}>
+      <svg className="animate-spin" style={{ color: "var(--color-primary)", width: 32, height: 32 }} fill="none" viewBox="0 0 24 24">
+        <circle style={{ opacity: 0.25 }} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+        <path style={{ opacity: 0.75 }} fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+      </svg>
     </div>
   )
 }
