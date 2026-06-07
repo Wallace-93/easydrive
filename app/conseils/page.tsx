@@ -36,28 +36,29 @@ Ne pas ralentir à l'approche d'un piéton, coller un cycliste ou ignorer les v�
   },
   {
     id: "2",
-    categorie: "Technique",
-    titre: "Réussir le créneau du premier coup",
-    resume: "La méthode pas à pas pour maîtriser le stationnement en créneau, la bête noire des candidats.",
-    contenu: `Le créneau est la manœuvre la plus redoutée. Voici une méthode simple et efficace.
+    categorie: "Formation",
+    titre: "La régularité : le secret d'un apprentissage efficace",
+    resume: "Pourquoi espacer ses leçons est le piège numéro un des candidats au permis.",
+    contenu: `La régularité est le facteur le plus sous-estimé dans l'apprentissage de la conduite. Voici pourquoi elle fait toute la différence.
 
-**Étape 1 : Se positionner**
-Arrêtez-vous parallèlement au véhicule derrière lequel vous souhaitez vous garer, avec environ 50 cm d'écart. Vos rétroviseurs doivent être à la même hauteur.
+**Le piège des leçons espacées**
+Prendre une leçon toutes les 3 semaines, c'est oublier la moitié de ce que vous avez appris à la séance précédente. Votre moniteur passe alors du temps à vous faire réviser au lieu de vous faire progresser. Résultat : vous multipliez les heures et la facture explose.
 
-**Étape 2 : Braquer à fond**
-En marche arrière, braquez le volant à fond vers la droite (si vous vous garez à droite). Avancez lentement en regardant dans le rétroviseur droit.
+**Le rythme idéal**
+Pour progresser efficacement, visez au minimum une leçon par semaine. L'idéal est de 2 leçons par semaine, espacées de 2 ou 3 jours. Ce rythme permet de consolider vos acquis sans saturer.
 
-**Étape 3 : Le repère**
-Quand vous voyez le coin du véhicule arrière dans votre rétroviseur gauche, remettez les roues droites et continuez à reculer.
+**Même logique pour le code**
+Révisez le code 20 à 30 minutes par jour plutôt que 3 heures une fois par semaine. La répétition régulière ancre les connaissances dans la mémoire à long terme. Les candidats qui révisent quotidiennement obtiennent en moyenne 5 points de plus à l'examen.
 
-**Étape 4 : Contre-braquer**
-Quand votre pare-chocs arrière dépasse le véhicule de devant, braquez à fond à gauche pour vous aligner avec le trottoir.
+**Ne laissez pas la motivation retomber**
+Plus vous espacez vos séances, plus vous risquez de décrocher. La conduite devient une corvée au lieu d'un plaisir. À l'inverse, un rythme soutenu crée une dynamique positive : vous sentez que vous progressez et cela vous motive à continuer.
 
-**Étape 5 : Ajuster**
-Avancez légèrement pour vous centrer dans l'emplacement. Vérifiez que vous êtes à 20-30 cm du trottoir.
+**Fixez-vous une date d'examen**
+Avoir une échéance claire vous oblige à maintenir le rythme. Sans objectif de date, la formation s'étire indéfiniment. Discutez avec votre moniteur pour définir un planning réaliste.
 
-**Conseil** : Prenez votre temps. Mieux vaut une manœuvre lente et réussie qu'une tentative rapide et ratée.`,
-    icone: "🅿️",
+**Conseil pratique**
+Réservez vos 4 prochaines leçons d'un coup. Bloquez les créneaux dans votre agenda comme vous le feriez pour un rendez-vous médical. La régularité n'est pas une question de motivation, c'est une question d'organisation.`,
+    icone: "📅",
     tempsLecture: "3 min",
   },
   {
@@ -101,7 +102,7 @@ Sur Easy Drive, les moniteurs fixent leurs propres prix. Les tarifs varient de 3
 Le minimum légal est de 20 heures, mais la moyenne nationale est de 35 heures. Plus vous révisez le code et vous entraînez mentalement entre les leçons, moins vous aurez besoin d'heures.
 
 **Le CPF (Compte Personnel de Formation)**
-Votre permis B peut être financé par le CPF si vous êtes salarié ou demandeur d'emploi. Renseignez-vous sur moncompteformation.gouv.fr.
+Votre permis B peut être financé par le CPF si vous êtes en recherche d'emploi. Attention : depuis 2024, les salariés ne peuvent plus utiliser le CPF pour financer leur formation automobile. Renseignez-vous sur moncompteformation.gouv.fr.
 
 **La conduite accompagnée (AAC)**
 Accessible dès 15 ans, l'AAC permet de conduire 3 000 km avec un accompagnant. Résultat : moins d'heures payantes et un meilleur taux de réussite à l'examen.

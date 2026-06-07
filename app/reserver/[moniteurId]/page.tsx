@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect, use } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
+import { envoyerNotification } from "@/lib/notifications"
 
 type Moniteur = {
   id: string
@@ -122,6 +123,25 @@ export default function Reserver({ params }: { params: Promise<{ moniteurId: str
       setSubmitting(false)
       return
     }
+
+    // Notifier le moniteur
+    const { data: moniteurProfile } = await supabase
+      .from("profiles")
+      .select("prenom")
+      .eq("id", moniteur.user_id)
+      .single()
+
+    const { data: { user: currentUser } } = await supabase.auth.getUser()
+
+    envoyerNotification("reservation_nouvelle", currentUser?.email || "", {
+      moniteurPrenom: moniteur.profiles?.prenom || "",
+      elevePrenom: "Élève",
+      eleveNom: "",
+      date: new Date(`${date}T${heure}:00`).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }),
+      heure,
+      lieu,
+      montant: moniteur.tarif_horaire * duree,
+    })
 
     setSuccess(true)
     setSubmitting(false)

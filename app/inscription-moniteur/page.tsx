@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
+import { envoyerNotification } from "@/lib/notifications"
 
 const ETAPES = [
   { num: 1, label: "Vos informations" },
@@ -77,6 +78,7 @@ export default function InscriptionMoniteur() {
     rayonKm: "15",
     bio: "",
     creneaux: [] as string[],
+    diplomeFichier: null as File | null,
   })
 
   function updateForm(field: string, value: any) {
@@ -130,6 +132,7 @@ export default function InscriptionMoniteur() {
       if (!form.diplome) { setError("Veuillez sélectionner votre diplôme."); return false }
       if (!form.experienceAnnees.trim()) { setError("Veuillez indiquer vos années d'expérience."); return false }
       if (!form.typeBoite) { setError("Veuillez indiquer le type de boîte de vitesses."); return false }
+      if (!form.diplomeFichier) { setError("Veuillez téléverser votre justificatif de diplôme."); return false }
     }
     if (etape === 3) {
       if (!form.zone) { setError("Veuillez sélectionner votre zone d'intervention."); return false }
@@ -191,6 +194,23 @@ export default function InscriptionMoniteur() {
     const boiteAuto = form.typeBoite === "automatique" || form.typeBoite === "les_deux"
     const lieuxFiltres = form.lieuxSupplementaires.filter(l => l.trim() !== "")
 
+    // Upload du diplôme
+    let diplomeUrl = ""
+    if (form.diplomeFichier) {
+      const ext = form.diplomeFichier.name.split(".").pop()
+      const filePath = `diplomes/${userId}.${ext}`
+      const { error: uploadError } = await supabase.storage
+        .from("documents")
+        .upload(filePath, form.diplomeFichier, { upsert: true })
+      if (uploadError) {
+        setError("Erreur lors de l'envoi du diplôme : " + uploadError.message)
+        setLoading(false)
+        return
+      }
+      const { data: urlData } = supabase.storage.from("documents").getPublicUrl(filePath)
+      diplomeUrl = urlData.publicUrl
+    }
+
     const { error: moniteurError } = await supabase.from("moniteurs").insert({
       user_id: userId,
       diplome: form.diplome,
@@ -205,6 +225,7 @@ export default function InscriptionMoniteur() {
       rayon_km: parseInt(form.rayonKm),
       bio: form.bio.trim(),
       creneaux: form.creneaux,
+      diplome_url: diplomeUrl,
       verifie: false,
       note_moyenne: 0,
       nb_avis: 0,
@@ -215,6 +236,17 @@ export default function InscriptionMoniteur() {
       setLoading(false)
       return
     }
+
+    // Notifier l'admin
+    envoyerNotification("inscription_moniteur", "fallies.project@gmail.com", {
+      prenom: form.prenom,
+      nom: form.nom,
+      email: form.email,
+      telephone: form.telephone,
+      diplome: form.diplome,
+      zone: form.zone,
+      diplomeUrl: diplomeUrl,
+    })
 
     setSuccess(true)
     setLoading(false)
@@ -236,7 +268,7 @@ export default function InscriptionMoniteur() {
             Votre profil moniteur a été créé avec succès.
           </p>
           <p className="mb-8 text-sm" style={{ color: "var(--color-text-muted)" }}>
-            Notre équipe va vérifier vos informations. Vous recevrez une confirmation sous 24 à 48 heures.
+            Notre équipe va vérifier votre diplôme. Votre profil sera activé sous 24 à 48 heures après validation.
           </p>
           <button onClick={() => window.location.replace("/dashboard")} className="btn-primary w-full">
             Accéder à mon espace →

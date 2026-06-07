@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
+import { envoyerNotification } from "@/lib/notifications"
 
 type Reservation = {
   id: string
@@ -86,6 +87,34 @@ export default function DashboardMoniteur() {
 
     if (!error) {
       setReservations(prev => prev.map(r => r.id === resId ? { ...r, statut } : r))
+
+      // Récupérer les infos pour la notification
+      const res = reservations.find(r => r.id === resId)
+      if (res) {
+        const eleveUserId = res.eleves?.user_id
+        if (eleveUserId) {
+          const { data: eleveAuth } = await supabase.from("profiles").select("prenom").eq("id", eleveUserId).single()
+          const date = new Date(res.date_heure)
+
+          if (statut === "confirmee") {
+            envoyerNotification("reservation_confirmee", "", {
+              elevePrenom: eleveAuth?.prenom || "Élève",
+              moniteurPrenom: profil?.prenom || "Moniteur",
+              moniteurNom: profil?.nom || "",
+              date: date.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }),
+              heure: date.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }),
+              lieu: res.adresse_rdv || "",
+              montant: res.montant || "",
+            })
+          } else if (statut === "annulee") {
+            envoyerNotification("reservation_annulee", "", {
+              prenom: eleveAuth?.prenom || "Élève",
+              date: date.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }),
+              heure: date.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }),
+            })
+          }
+        }
+      }
     }
   }
 
