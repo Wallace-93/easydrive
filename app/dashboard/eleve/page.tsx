@@ -172,6 +172,36 @@ export default function DashboardEleve() {
           </div>
         </Link>
 
+        {/* Progression + Conseils */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <Link href="/progression" style={{ textDecoration: "none" }}>
+            <div className="rounded-2xl p-5 transition-all" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-primary)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-border)")}>
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">📊</span>
+                <div>
+                  <p className="text-sm font-bold">Ma progression</p>
+                  <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>Score, badges et suivi détaillé</p>
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link href="/conseils" style={{ textDecoration: "none" }}>
+            <div className="rounded-2xl p-5 transition-all" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-primary)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-border)")}>
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">💡</span>
+                <div>
+                  <p className="text-sm font-bold">Conseils et astuces</p>
+                  <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>Articles pour réussir votre permis</p>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+
         {/* Matching */}
         <Link href="/matching" style={{ textDecoration: "none" }}>
           <div className="rounded-2xl p-6 mb-6 transition-all" style={{ background: "linear-gradient(135deg, var(--color-primary), #009966)", border: "none" }}

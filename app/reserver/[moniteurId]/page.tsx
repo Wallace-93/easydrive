@@ -41,6 +41,7 @@ export default function Reserver({ params }: { params: Promise<{ moniteurId: str
   const [date, setDate] = useState("")
   const [heure, setHeure] = useState("")
   const [lieu, setLieu] = useState("")
+  const [duree, setDuree] = useState<1 | 2>(1)
 
   useEffect(() => {
     async function load() {
@@ -112,7 +113,7 @@ export default function Reserver({ params }: { params: Promise<{ moniteurId: str
       moniteur_id: moniteur.id,
       date_heure: dateHeure.toISOString(),
       adresse_rdv: lieu.trim(),
-      montant: moniteur.tarif_horaire,
+      montant: moniteur.tarif_horaire * duree,
       statut: "en_attente",
     })
 
@@ -182,7 +183,7 @@ export default function Reserver({ params }: { params: Promise<{ moniteurId: str
               </div>
               <div className="flex justify-between pt-3" style={{ borderTop: "1px solid var(--color-border)" }}>
                 <span style={{ color: "var(--color-text-muted)" }}>Tarif</span>
-                <span className="font-bold" style={{ color: "var(--color-primary)" }}>{moniteur.tarif_horaire} €</span>
+                <span className="font-bold" style={{ color: "var(--color-primary)" }}>{moniteur.tarif_horaire * duree} €</span>
               </div>
             </div>
           </div>
@@ -267,6 +268,23 @@ export default function Reserver({ params }: { params: Promise<{ moniteurId: str
             </div>
           </div>
 
+          {/* Durée */}
+          <div className="mb-6">
+            <label className="block text-sm font-semibold mb-3">Durée de la leçon</label>
+            <div className="grid grid-cols-2 gap-3">
+              <div onClick={() => { setDuree(1); setError(null) }}
+                className={`card-select ${duree === 1 ? "card-select-active" : ""}`}>
+                <span className="text-lg font-bold">1h</span>
+                <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>{moniteur.tarif_horaire} €</span>
+              </div>
+              <div onClick={() => { setDuree(2); setError(null) }}
+                className={`card-select ${duree === 2 ? "card-select-active" : ""}`}>
+                <span className="text-lg font-bold">2h</span>
+                <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>{moniteur.tarif_horaire * 2} €</span>
+              </div>
+            </div>
+          </div>
+
           {/* Lieu */}
           <div className="mb-6">
             <label className="block text-sm font-semibold mb-3">Lieu de rendez-vous</label>
@@ -308,7 +326,7 @@ export default function Reserver({ params }: { params: Promise<{ moniteurId: str
               <div className="flex flex-col gap-1 text-sm" style={{ color: "var(--color-primary-dark)" }}>
                 <p>📅 {new Date(`${date}T${heure}:00`).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })} à {heure}</p>
                 <p>📍 {lieu}</p>
-                <p>💰 {moniteur.tarif_horaire} € (1 heure de conduite)</p>
+                <p>💰 {moniteur.tarif_horaire * duree} € ({duree} heure{duree > 1 ? "s" : ""} de conduite)</p>
               </div>
             </div>
           )}
@@ -322,7 +340,7 @@ export default function Reserver({ params }: { params: Promise<{ moniteurId: str
 
           {/* Bouton */}
           <button type="button" onClick={confirmer} className="btn-primary w-full" disabled={submitting}>
-            {submitting ? "Envoi de la réservation…" : `Confirmer la réservation — ${moniteur.tarif_horaire} €`}
+            {submitting ? "Envoi de la réservation…" : `Confirmer la réservation — ${moniteur.tarif_horaire * duree} €`}
           </button>
 
           <p className="text-xs text-center mt-4" style={{ color: "var(--color-text-muted)" }}>
