@@ -154,7 +154,7 @@ export default function DashboardMoniteur() {
 
 
         {/* Actions rapides */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <Link href="/messages" style={{ textDecoration: "none" }}>
             <div className="rounded-2xl p-5 transition-all" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
               onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-primary)")}
@@ -185,6 +185,21 @@ export default function DashboardMoniteur() {
                 <div>
                   <p className="text-sm font-bold">Mon profil</p>
                   <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>Modifier mes informations</p>
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link href="/vehicules" style={{ textDecoration: "none" }}>
+            <div className="rounded-2xl p-5 transition-all" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-primary)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-border)")}>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "var(--color-surface-hover)", color: "var(--color-text-secondary)" }}>
+                  <span className="text-lg">🚗</span>
+                </div>
+                <div>
+                  <p className="text-sm font-bold">Véhicules double commande</p>
+                  <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>Louer ou proposer un véhicule</p>
                 </div>
               </div>
             </div>
