@@ -152,6 +152,26 @@ export default function DashboardEleve() {
           ))}
         </div>
 
+        {/* Code de la route */}
+        <Link href="/code" style={{ textDecoration: "none" }}>
+          <div className="rounded-2xl p-6 mb-4 transition-all" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--color-primary)"; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,179,125,0.1)" }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--color-border)"; e.currentTarget.style.boxShadow = "none" }}>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: "var(--color-primary-light)" }}>
+                <span className="text-2xl">🎓</span>
+              </div>
+              <div>
+                <p className="text-base font-bold">Code de la route gratuit</p>
+                <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>69 questions · 10 thèmes · Examens blancs · Suivi de progression</p>
+              </div>
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="var(--color-text-muted)" strokeWidth="2.5" className="flex-shrink-0 ml-auto">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </Link>
+
         {/* Matching */}
         <Link href="/matching" style={{ textDecoration: "none" }}>
           <div className="rounded-2xl p-6 mb-6 transition-all" style={{ background: "linear-gradient(135deg, var(--color-primary), #009966)", border: "none" }}

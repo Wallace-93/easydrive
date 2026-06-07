@@ -77,6 +77,7 @@ export default function Home() {
             <a href="#avantages" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Avantages</a>
             <a href="#fonctionnement" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Comment ça marche</a>
             <a href="#moniteurs" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Moniteurs</a>
+            <Link href="/code" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Code gratuit</Link>
           </nav>
           <div className="flex items-center gap-3">
             {user ? (
@@ -274,6 +275,7 @@ export default function Home() {
             <Link href="/resultats" style={{ color: "inherit", textDecoration: "none" }}>Moniteurs</Link>
             <Link href="/inscription" style={{ color: "inherit", textDecoration: "none" }}>S'inscrire</Link>
             <Link href="/inscription-moniteur" style={{ color: "inherit", textDecoration: "none" }}>Devenir moniteur</Link>
+            <Link href="/code" style={{ color: "inherit", textDecoration: "none" }}>Code gratuit</Link>
             <Link href="/connexion" style={{ color: "inherit", textDecoration: "none" }}>Connexion</Link>
           </div>
           <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
