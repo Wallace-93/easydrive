@@ -4,6 +4,56 @@ import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
 
+const SLOGANS = [
+  { debut: "Choisissez votre moniteur,", accent: "pas votre auto-école." },
+  { debut: "Apprenez à conduire,", accent: "pas à patienter." },
+  { debut: "Un moniteur qui connaît votre prénom,", accent: "ça change tout." },
+  { debut: "Le permis au prix juste,", accent: "pas au prix fort." },
+  { debut: "Votre auto-école prend 50 %.", accent: "Nous, 15 %." },
+  { debut: "On ne vend pas des packs.", accent: "On trouve votre coach." },
+  { debut: "Fini les moniteurs imposés.", accent: "Ici, c'est vous qui choisissez." },
+  { debut: "Le permis sans les surprises,", accent: "juste la route." },
+  { debut: "Réservez en 30 secondes.", accent: "Sans passer par l'accueil." },
+  { debut: "Pas de secrétaire, pas d'attente.", accent: "Juste vous et votre moniteur." },
+  { debut: "Un créneau chaque semaine,", accent: "pas chaque trimestre." },
+  { debut: "Conduire régulièrement,", accent: "progresser vraiment." },
+  { debut: "Des moniteurs vérifiés,", accent: "pas des inconnus au volant." },
+  { debut: "Un moniteur qui se présente à l'heure.", accent: "Oui, ça existe." },
+  { debut: "Vous choisissez le tarif,", accent: "pas l'auto-école." },
+  { debut: "Payez à l'heure, sans engagement.", accent: "Votre budget, vos règles." },
+]
+
+function SloganCarousel() {
+  const [index, setIndex] = useState(0)
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setVisible(false)
+      setTimeout(() => {
+        setIndex(prev => (prev + 1) % SLOGANS.length)
+        setVisible(true)
+      }, 600)
+    }, 4500)
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6"
+      style={{ fontFamily: "var(--font-display)", color: "var(--color-text)", minHeight: "2.6em" }}>
+      <span style={{
+        transition: "opacity 0.6s ease, transform 0.6s ease",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(8px)",
+        display: "inline-block",
+      }}>
+        {SLOGANS[index].debut}{" "}
+        <span style={{ color: "var(--color-primary)" }}>{SLOGANS[index].accent}</span>
+      </span>
+    </h1>
+  )
+}
+
 export default function Home() {
   const [user, setUser] = useState<any>(null)
 
@@ -52,10 +102,7 @@ export default function Home() {
             style={{ background: "var(--color-primary-light)", color: "var(--color-primary-dark)" }}>
             🚗 La nouvelle auto-école en Île-de-France
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style={{ fontFamily: "var(--font-display)", color: "var(--color-text)" }}>
-            Choisissez votre moniteur,{" "}
-            <span style={{ color: "var(--color-primary)" }}>pas votre auto-école.</span>
-          </h1>
+          <SloganCarousel />
           <p className="text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto" style={{ color: "var(--color-text-secondary)" }}>
             Easy Drive vous connecte avec des moniteurs indépendants de qualité en Île-de-France. Suivi personnalisé, tarifs justes, code de la route gratuit.
           </p>
