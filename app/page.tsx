@@ -9,7 +9,7 @@ const SLOGANS = [
   { debut: "Apprenez à conduire,", accent: "pas à patienter." },
   { debut: "Un moniteur qui connaît votre prénom,", accent: "ça change tout." },
   { debut: "Le permis au prix juste,", accent: "pas au prix fort." },
-  { debut: "Votre auto-école prend 50 %.", accent: "Nous, 15 %." },
+  { debut: "Des conditions éthiques pour nos moniteurs.", accent: "De meilleurs cours pour vous." },
   { debut: "On ne vend pas des packs.", accent: "On trouve votre coach." },
   { debut: "Fini les moniteurs imposés.", accent: "Ici, c'est vous qui choisissez." },
   { debut: "Le permis sans les surprises,", accent: "juste la route." },
@@ -34,7 +34,7 @@ function SloganCarousel() {
         setIndex(prev => (prev + 1) % SLOGANS.length)
         setVisible(true)
       }, 600)
-    }, 4500)
+    }, 6500)
     return () => clearInterval(timer)
   }, [])
 
