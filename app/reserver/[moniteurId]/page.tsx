@@ -26,7 +26,7 @@ const HEURES = [
   "08:00", "09:00", "10:00", "11:00",
   "12:00", "13:00",
   "14:00", "15:00", "16:00", "17:00",
-  "18:00", "19:00", "20:00",
+  "18:00", "19:00", "20:00", "21:00", "22:00",
 ]
 
 export default function Reserver({ params }: { params: Promise<{ moniteurId: string }> }) {
@@ -233,8 +233,8 @@ export default function Reserver({ params }: { params: Promise<{ moniteurId: str
       <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
-            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </Link>
           <Link href={`/moniteur/${moniteur.id}`} className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>
             ← Retour au profil

@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { Analytics } from '@vercel/analytics/react'
 
 export const metadata: Metadata = {
-  title: 'Easy Drive — Auto-école 2.0',
+  title: 'Just Conduite — Auto-école 2.0 en Île-de-France',
   description: 'Trouvez votre moniteur auto-école idéal en Île-de-France. Commission 15%, suivi pédagogique, code gratuit.',
 }
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
+        <Analytics />
       </body>
     </html>
   )

@@ -93,10 +93,10 @@ Un bon moniteur s'adapte à votre niveau de stress. Dites-lui quand vous vous se
     contenu: `Le permis de conduire coûte en moyenne 1 800 € en auto-école traditionnelle. Voici comment faire baisser la note.
 
 **Passez le code en candidat libre**
-Les plateformes en ligne proposent des formules à partir de 0 € (Easy Drive) contre 200-350 € en auto-école. L'inscription à l'examen coûte 30 € sur l'ANTS.
+Les plateformes en ligne proposent des formules à partir de 0 € (Just Conduite) contre 200-350 € en auto-école. L'inscription à l'examen coûte 30 € sur l'ANTS.
 
 **Comparez les tarifs des moniteurs**
-Sur Easy Drive, les moniteurs fixent leurs propres prix. Les tarifs varient de 35 à 50 €/h selon l'expérience et la zone. Comparez avant de choisir.
+Sur Just Conduite, les moniteurs fixent leurs propres prix. Les tarifs varient de 35 à 50 €/h selon l'expérience et la zone. Comparez avant de choisir.
 
 **Optimisez votre nombre d'heures**
 Le minimum légal est de 20 heures, mais la moyenne nationale est de 35 heures. Plus vous révisez le code et vous entraînez mentalement entre les leçons, moins vous aurez besoin d'heures.
@@ -152,8 +152,8 @@ export default function Conseils() {
         <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
           <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
-              <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-              <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+              <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+              <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
             </Link>
             <button onClick={() => setArticleOuvert(null)} className="text-sm font-medium"
               style={{ color: "var(--color-text-secondary)", background: "none", border: "none", cursor: "pointer" }}>
@@ -202,8 +202,8 @@ export default function Conseils() {
       <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
-            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </Link>
           <Link href="/dashboard" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>← Tableau de bord</Link>
         </div>

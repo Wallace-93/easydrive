@@ -21,8 +21,8 @@ const TEMPLATES: Record<NotificationType, { sujet: string; corps: (data: any) =>
       <p>📅 <strong>${d.date}</strong> à <strong>${d.heure}</strong></p>
       <p>📍 ${d.lieu}</p>
       <p>💰 ${d.montant} €</p>
-      <p>Connectez-vous à votre espace Easy Drive pour accepter ou refuser cette demande.</p>
-      <a href="https://easydrive.vercel.app/dashboard" style="display:inline-block;padding:12px 24px;background:#00B37D;color:white;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:16px">Voir la demande →</a>
+      <p>Connectez-vous à votre espace Just Conduite pour accepter ou refuser cette demande.</p>
+      <a href="https://justconduite.vercel.app/dashboard" style="display:inline-block;padding:12px 24px;background:#00B37D;color:white;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:16px">Voir la demande →</a>
     `,
   },
   reservation_confirmee: {
@@ -43,8 +43,8 @@ const TEMPLATES: Record<NotificationType, { sujet: string; corps: (data: any) =>
       <h2 style="color:#EF4444">Réservation annulée</h2>
       <p>Bonjour ${d.prenom},</p>
       <p>La leçon prévue le <strong>${d.date}</strong> à <strong>${d.heure}</strong> a été annulée.</p>
-      <p>Vous pouvez réserver un nouveau créneau à tout moment sur Easy Drive.</p>
-      <a href="https://easydrive.vercel.app/resultats" style="display:inline-block;padding:12px 24px;background:#00B37D;color:white;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:16px">Trouver un moniteur →</a>
+      <p>Vous pouvez réserver un nouveau créneau à tout moment sur Just Conduite.</p>
+      <a href="https://justconduite.vercel.app/resultats" style="display:inline-block;padding:12px 24px;background:#00B37D;color:white;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:16px">Trouver un moniteur →</a>
     `,
   },
   message_nouveau: {
@@ -54,7 +54,7 @@ const TEMPLATES: Record<NotificationType, { sujet: string; corps: (data: any) =>
       <p>Bonjour ${d.destinatairePrenom},</p>
       <p><strong>${d.expediteurPrenom}</strong> vous a envoyé un message :</p>
       <blockquote style="padding:12px 16px;background:#F8FAFB;border-left:3px solid #00B37D;border-radius:4px;margin:16px 0;color:#64748B">${d.apercu}</blockquote>
-      <a href="https://easydrive.vercel.app/messages/${d.reservationId}" style="display:inline-block;padding:12px 24px;background:#00B37D;color:white;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:16px">Répondre →</a>
+      <a href="https://justconduite.vercel.app/messages/${d.reservationId}" style="display:inline-block;padding:12px 24px;background:#00B37D;color:white;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:16px">Répondre →</a>
     `,
   },
   rappel_lecon: {
@@ -72,7 +72,7 @@ const TEMPLATES: Record<NotificationType, { sujet: string; corps: (data: any) =>
     sujet: "[Admin] Nouveau moniteur inscrit",
     corps: (d) => `
       <h2 style="color:#00B37D">Nouveau moniteur inscrit</h2>
-      <p><strong>${d.prenom} ${d.nom}</strong> vient de s'inscrire comme moniteur sur Easy Drive.</p>
+      <p><strong>${d.prenom} ${d.nom}</strong> vient de s'inscrire comme moniteur sur Just Conduite.</p>
       <p>📧 ${d.email}</p>
       <p>📞 ${d.telephone}</p>
       <p>🎓 Diplôme : ${d.diplome}</p>
@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
       <div style="max-width:560px;margin:0 auto;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#0F172A">
         ${template.corps(data)}
         <hr style="border:none;border-top:1px solid #E2E8F0;margin:32px 0 16px" />
-        <p style="font-size:12px;color:#94A3B8">Easy Drive — L'auto-école 2.0 en Île-de-France</p>
+        <p style="font-size:12px;color:#94A3B8">Just Conduite — L'auto-école 2.0 en Île-de-France</p>
       </div>
     `
 
@@ -117,9 +117,9 @@ export async function POST(req: NextRequest) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Easy Drive <onboarding@resend.dev>",
+        from: "Just Conduite <onboarding@resend.dev>",
         to: emailTo,
-        subject: `Easy Drive — ${template.sujet}`,
+        subject: `Just Conduite — ${template.sujet}`,
         html,
       }),
     })

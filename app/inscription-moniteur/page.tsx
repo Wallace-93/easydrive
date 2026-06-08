@@ -40,7 +40,7 @@ const CRENEAUX = [
   { value: "matin", label: "Matin", desc: "8h — 12h" },
   { value: "midi", label: "Midi", desc: "12h — 14h" },
   { value: "apres_midi", label: "Après-midi", desc: "14h — 18h" },
-  { value: "soir", label: "Soir", desc: "18h — 21h" },
+  { value: "soir", label: "Soir", desc: "18h — 22h" },
   { value: "week_end", label: "Week-end", desc: "Samedi et dimanche" },
 ]
 
@@ -262,7 +262,7 @@ export default function InscriptionMoniteur() {
             </svg>
           </div>
           <h1 className="text-2xl font-bold mb-2" style={{ fontFamily: "var(--font-display)" }}>
-            Bienvenue sur Easy Drive, {form.prenom} !
+            Bienvenue sur Just Conduite, {form.prenom} !
           </h1>
           <p className="mb-3" style={{ color: "var(--color-text-secondary)", fontSize: 15 }}>
             Votre profil moniteur a été créé avec succès.
@@ -283,8 +283,8 @@ export default function InscriptionMoniteur() {
       <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
-            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </Link>
           <Link href="/connexion" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>
             Déjà inscrit ?
@@ -323,7 +323,7 @@ export default function InscriptionMoniteur() {
           {/* ─────── ÉTAPE 1 ─────── */}
           {etape === 1 && (
             <div>
-              <h2 className="text-xl font-bold mb-1" style={{ fontFamily: "var(--font-display)" }}>Devenez moniteur Easy Drive</h2>
+              <h2 className="text-xl font-bold mb-1" style={{ fontFamily: "var(--font-display)" }}>Devenez moniteur Just Conduite</h2>
               <p className="text-sm mb-6" style={{ color: "var(--color-text-secondary)" }}>
                 Rejoignez la plateforme avec la commission la plus basse du marché : seulement 15 %.
               </p>
@@ -386,7 +386,7 @@ export default function InscriptionMoniteur() {
                 <label className="block text-sm font-semibold mb-1.5">
                   Tarif horaire : <span style={{ color: "var(--color-primary)" }}>{form.tarifHoraire} €/h</span>
                 </label>
-                <p className="text-xs mb-3" style={{ color: "var(--color-text-muted)" }}>Vous conservez 85 % de ce montant. Easy Drive prélève 15 % de commission.</p>
+                <p className="text-xs mb-3" style={{ color: "var(--color-text-muted)" }}>Vous conservez 85 % de ce montant. Just Conduite prélève 15 % de commission.</p>
                 <input type="range" min="25" max="80" step="5" value={form.tarifHoraire}
                   onChange={e => updateForm("tarifHoraire", e.target.value)} className="w-full accent-[#00B37D]" />
                 <div className="flex justify-between text-xs mt-1" style={{ color: "var(--color-text-muted)" }}><span>25 €</span><span>80 €</span></div>

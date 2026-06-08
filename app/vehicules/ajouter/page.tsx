@@ -129,8 +129,8 @@ export default function AjouterVehicule() {
       <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
-            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </Link>
           <Link href="/vehicules" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>← Véhicules</Link>
         </div>

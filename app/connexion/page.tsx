@@ -38,8 +38,8 @@ export default function Connexion() {
       <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
         <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
-            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </Link>
         </div>
       </header>
@@ -47,7 +47,7 @@ export default function Connexion() {
       <div className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md">
           <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "var(--font-display)" }}>Bon retour !</h1>
-          <p className="text-sm mb-8" style={{ color: "var(--color-text-secondary)" }}>Connectez-vous à votre compte Easy Drive.</p>
+          <p className="text-sm mb-8" style={{ color: "var(--color-text-secondary)" }}>Connectez-vous à votre compte Just Conduite.</p>
 
           <div className="rounded-2xl p-6 sm:p-8 flex flex-col gap-5" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
             <div>

@@ -42,7 +42,7 @@ const CRENEAUX = [
   { value: "matin", label: "Matin", desc: "8h — 12h" },
   { value: "midi", label: "Midi", desc: "12h — 14h" },
   { value: "apres_midi", label: "Après-midi", desc: "14h — 18h" },
-  { value: "soir", label: "Soir", desc: "18h — 21h" },
+  { value: "soir", label: "Soir", desc: "18h — 22h" },
   { value: "week_end", label: "Week-end", desc: "Samedi et dimanche" },
 ]
 
@@ -231,7 +231,7 @@ export default function Inscription() {
             </svg>
           </div>
           <h1 className="text-2xl font-bold mb-2" style={{ fontFamily: "var(--font-display)" }}>
-            Bienvenue sur Easy Drive, {form.prenom} !
+            Bienvenue sur Just Conduite, {form.prenom} !
           </h1>
           <p className="mb-8" style={{ color: "var(--color-text-secondary)", fontSize: 15 }}>
             Votre compte a été créé avec succès. Découvrez les moniteurs disponibles près de chez vous.
@@ -256,8 +256,8 @@ export default function Inscription() {
       <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
-            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </Link>
           <Link href="/connexion" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>
             Déjà inscrit ?

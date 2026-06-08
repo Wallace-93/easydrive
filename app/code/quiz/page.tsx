@@ -55,7 +55,7 @@ function QuizContent() {
     if (index + 1 >= questions.length) {
       // Sauvegarder la progression
       const themeId = theme || "mixte"
-      const saved = localStorage.getItem("easydrive_code_progression")
+      const saved = localStorage.getItem("justconduite_code_progression")
       const progression = saved ? JSON.parse(saved) : {}
 
       if (!progression[themeId]) progression[themeId] = { total: 0, correct: 0 }
@@ -75,9 +75,9 @@ function QuizContent() {
         if (!existant[theme]) existant[theme] = { total: 0, correct: 0 }
         existant[theme].total += questions.length
         existant[theme].correct += finalScore
-        localStorage.setItem("easydrive_code_progression", JSON.stringify(existant))
+        localStorage.setItem("justconduite_code_progression", JSON.stringify(existant))
       } else {
-        localStorage.setItem("easydrive_code_progression", JSON.stringify(progression))
+        localStorage.setItem("justconduite_code_progression", JSON.stringify(progression))
       }
 
       setFinished(true)

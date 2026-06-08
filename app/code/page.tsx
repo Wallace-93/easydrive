@@ -20,7 +20,7 @@ export default function CodePage() {
     })
 
     // Charger la progression depuis localStorage
-    const saved = localStorage.getItem("easydrive_code_progression")
+    const saved = localStorage.getItem("justconduite_code_progression")
     if (saved) {
       try { setProgression(JSON.parse(saved)) } catch {}
     }
@@ -36,8 +36,8 @@ export default function CodePage() {
       <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
-            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </Link>
           {user ? (
             <Link href="/dashboard" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>← Tableau de bord</Link>
@@ -146,7 +146,7 @@ export default function CodePage() {
         {/* Réinitialiser */}
         {totalRepondues > 0 && (
           <div className="text-center mt-8">
-            <button onClick={() => { localStorage.removeItem("easydrive_code_progression"); setProgression({}); }}
+            <button onClick={() => { localStorage.removeItem("justconduite_code_progression"); setProgression({}); }}
               className="text-xs font-medium" style={{ color: "var(--color-text-muted)", background: "none", border: "none", cursor: "pointer" }}>
               Réinitialiser ma progression
             </button>

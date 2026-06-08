@@ -70,8 +70,8 @@ export default function Home() {
       <header className="fixed top-0 w-full z-50 border-b" style={{ borderColor: "var(--color-border)", background: "rgba(248,250,251,0.9)", backdropFilter: "blur(12px)" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)" }}>
-            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </div>
           <nav className="hidden sm:flex items-center gap-6">
             <a href="#avantages" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Avantages</a>
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
           <SloganCarousel />
           <p className="text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto" style={{ color: "var(--color-text-secondary)" }}>
-            Easy Drive vous connecte avec des moniteurs indépendants de qualité en Île-de-France. Suivi personnalisé, tarifs justes, code de la route gratuit.
+            Just Conduite vous connecte avec des moniteurs indépendants de qualité en Île-de-France. Suivi personnalisé, tarifs justes, code de la route gratuit.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/inscription" className="btn-primary text-base px-8 py-4" style={{ textDecoration: "none" }}>
@@ -127,7 +127,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
           {[
             { value: "15 %", label: "De commission seulement", sub: "Vs 40-50 % chez les concurrents" },
-            { value: "35-45 €", label: "Par heure de conduite", sub: "Jusqu'à 30 % moins cher" },
+            { value: "35-45 €", label: "Par heure de conduite (en moyenne)", sub: "Les moniteurs fixent librement leurs tarifs" },
             { value: "100 %", label: "Gratuit pour le code", sub: "Accès illimité aux tests" },
             { value: "24h", label: "Réponse garantie", sub: "Service client réactif" },
           ].map(s => (
@@ -145,7 +145,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-              Pourquoi choisir Easy Drive ?
+              Pourquoi choisir Just Conduite ?
             </h2>
             <p className="text-base max-w-xl mx-auto" style={{ color: "var(--color-text-secondary)" }}>
               Une approche différente, centrée sur la relation entre l'élève et son moniteur.
@@ -251,11 +251,11 @@ export default function Home() {
               Vous êtes moniteur indépendant ?
             </h2>
             <p className="text-base mb-8 max-w-lg mx-auto" style={{ color: "var(--color-primary-dark)" }}>
-              Rejoignez Easy Drive et gardez 85 % de vos revenus. Gérez votre planning, vos élèves et votre activité depuis un seul tableau de bord.
+              Rejoignez Just Conduite et gardez 85 % de vos revenus. Gérez votre planning, vos élèves et votre activité depuis un seul tableau de bord.
             </p>
             <Link href="/inscription-moniteur" className="inline-block px-8 py-4 rounded-xl text-base font-bold transition-all"
               style={{ background: "var(--color-primary)", color: "white", textDecoration: "none" }}>
-              Devenir moniteur Easy Drive →
+              Devenir moniteur Just Conduite →
             </Link>
             <p className="text-xs mt-4" style={{ color: "var(--color-primary)" }}>
               Commission la plus basse du marché : 15 %
@@ -268,8 +268,8 @@ export default function Home() {
       <footer className="py-12 px-4 sm:px-6 border-t" style={{ borderColor: "var(--color-border)" }}>
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)" }}>
-            <span className="text-lg font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-lg font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-lg font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-lg font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </div>
           <div className="flex items-center gap-6 text-sm" style={{ color: "var(--color-text-muted)" }}>
             <Link href="/resultats" style={{ color: "inherit", textDecoration: "none" }}>Moniteurs</Link>
@@ -279,7 +279,7 @@ export default function Home() {
             <Link href="/connexion" style={{ color: "inherit", textDecoration: "none" }}>Connexion</Link>
           </div>
           <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
-            © 2026 Easy Drive. Tous droits réservés.
+            © 2026 Just Conduite. Tous droits réservés.
           </p>
         </div>
       </footer>

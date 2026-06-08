@@ -85,8 +85,8 @@ export default function DetailVehicule({ params }: { params: Promise<{ id: strin
       <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
-            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </Link>
           <Link href="/vehicules" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>← Tous les véhicules</Link>
         </div>
@@ -168,7 +168,7 @@ export default function DetailVehicule({ params }: { params: Promise<{ id: strin
               <span>👤</span> Propriétaire
             </h2>
             <p className="text-base font-semibold">{v.profiles?.prenom} {v.profiles?.nom}</p>
-            <p className="text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>Moniteur sur Easy Drive</p>
+            <p className="text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>Moniteur sur Just Conduite</p>
 
             {!contactVisible ? (
               <button onClick={() => { if (user) setContactVisible(true); else window.location.replace("/connexion") }}

@@ -67,7 +67,7 @@ export default function Progression() {
       setNbLeconsTerminees(leconsTerminees)
 
       // Récupérer la progression du code
-      const saved = localStorage.getItem("easydrive_code_progression")
+      const saved = localStorage.getItem("justconduite_code_progression")
       let totalQ = 0
       let totalCorrect = 0
       if (saved) {
@@ -85,17 +85,17 @@ export default function Progression() {
       setScoreCode(pctCode)
 
       // Streak
-      const lastVisit = localStorage.getItem("easydrive_last_visit")
+      const lastVisit = localStorage.getItem("justconduite_last_visit")
       const today = new Date().toDateString()
-      const streak = parseInt(localStorage.getItem("easydrive_streak") || "0")
+      const streak = parseInt(localStorage.getItem("justconduite_streak") || "0")
 
       if (lastVisit === today) {
         setStreakJours(streak)
       } else {
         const yesterday = new Date(Date.now() - 86400000).toDateString()
         const newStreak = lastVisit === yesterday ? streak + 1 : 1
-        localStorage.setItem("easydrive_streak", newStreak.toString())
-        localStorage.setItem("easydrive_last_visit", today)
+        localStorage.setItem("justconduite_streak", newStreak.toString())
+        localStorage.setItem("justconduite_last_visit", today)
         setStreakJours(newStreak)
       }
 
@@ -154,8 +154,8 @@ export default function Progression() {
       <header className="border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)", textDecoration: "none" }}>
-            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Easy</span>
-            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Drive</span>
+            <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
+            <span className="text-xl font-light" style={{ color: "var(--color-text)" }}>Conduite</span>
           </Link>
           <Link href="/dashboard" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>← Tableau de bord</Link>
         </div>
@@ -243,7 +243,7 @@ export default function Progression() {
         <h2 className="text-lg font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>Progression par thème</h2>
         <div className="rounded-2xl p-5" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
           {THEMES.map(theme => {
-            const saved = localStorage.getItem("easydrive_code_progression")
+            const saved = localStorage.getItem("justconduite_code_progression")
             let pct = 0
             if (saved) {
               try {
