@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
+import { Users, GraduationCap, Clock, Calendar, CheckCircle, Flag, Coins, BarChart3, MessageCircle, Star, Car } from "lucide-react"
 
 const ADMIN_EMAILS = ["fallies.project@gmail.com"]
 
@@ -203,23 +204,23 @@ export default function Admin() {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
               {[
-                { label: "Élèves inscrits", value: stats.totalEleves, icon: "👤" },
-                { label: "Moniteurs vérifiés", value: stats.moniteursVerifies, icon: "🎓" },
-                { label: "En attente", value: stats.moniteursEnAttente, icon: "⏳", alert: stats.moniteursEnAttente > 0 },
-                { label: "Réservations", value: stats.totalReservations, icon: "📅" },
-                { label: "Confirmées", value: stats.reservationsConfirmees, icon: "✅" },
-                { label: "Terminées", value: stats.reservationsTerminees, icon: "🏁" },
-                { label: "Revenu total", value: `${stats.revenuTotal} €`, icon: "💰" },
-                { label: "Commission (15 %)", value: `${stats.commissionTotale} €`, icon: "📊" },
-                { label: "Messages", value: stats.totalMessages, icon: "💬" },
-                { label: "Avis", value: stats.totalAvis, icon: "⭐" },
-                { label: "Véhicules", value: stats.totalVehicules, icon: "🚗" },
+                { label: "Élèves inscrits", value: stats.totalEleves, icon: <Users size={18} /> },
+                { label: "Moniteurs vérifiés", value: stats.moniteursVerifies, icon: <GraduationCap size={18} /> },
+                { label: "En attente", value: stats.moniteursEnAttente, icon: <Clock size={18} />, alert: stats.moniteursEnAttente > 0 },
+                { label: "Réservations", value: stats.totalReservations, icon: <Calendar size={18} /> },
+                { label: "Confirmées", value: stats.reservationsConfirmees, icon: <CheckCircle size={18} /> },
+                { label: "Terminées", value: stats.reservationsTerminees, icon: <Flag size={18} /> },
+                { label: "Revenu total", value: `${stats.revenuTotal} €`, icon: <Coins size={18} /> },
+                { label: "Commission (15 %)", value: `${stats.commissionTotale} €`, icon: <BarChart3 size={18} /> },
+                { label: "Messages", value: stats.totalMessages, icon: <MessageCircle size={18} /> },
+                { label: "Avis", value: stats.totalAvis, icon: <Star size={18} /> },
+                { label: "Véhicules", value: stats.totalVehicules, icon: <Car size={18} /> },
               ].map(s => (
                 <div key={s.label} className="rounded-xl p-4" style={{
                   background: "var(--color-surface)",
                   border: `1px solid ${(s as any).alert ? "var(--color-error)" : "var(--color-border)"}`,
                 }}>
-                  <span className="text-xl">{s.icon}</span>
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "var(--color-primary-light)", color: "var(--color-primary)" }}>{s.icon}</div>
                   <p className="text-xl font-bold mt-1" style={{ fontFamily: "var(--font-display)" }}>{s.value}</p>
                   <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>{s.label}</p>
                 </div>
@@ -235,7 +236,7 @@ export default function Admin() {
 
             {moniteursAttente.length === 0 ? (
               <div className="rounded-2xl p-8 text-center" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
-                <p className="text-3xl mb-3">✅</p>
+                <CheckCircle size={28} style={{ color: "var(--color-primary)", margin: "0 auto 12px" }} />
                 <p className="text-sm font-semibold">Aucun moniteur en attente</p>
               </div>
             ) : (

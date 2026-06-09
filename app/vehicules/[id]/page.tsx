@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect, use } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
+import { Car } from "lucide-react"
 
 type Vehicule = {
   id: string
@@ -98,7 +99,7 @@ export default function DetailVehicule({ params }: { params: Promise<{ id: strin
           {v.photo_url ? (
             <img src={v.photo_url} alt={`${v.marque} ${v.modele}`} className="w-full h-full object-cover" />
           ) : (
-            <span className="text-6xl">🚗</span>
+            <Car size={56} style={{ color: "var(--color-text-muted)" }} />
           )}
         </div>
 

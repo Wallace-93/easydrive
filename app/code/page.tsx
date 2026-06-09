@@ -6,6 +6,29 @@ import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import { THEMES, QUESTIONS } from "@/data/questions-code"
 import Link from "next/link"
+import { TrafficCone, Eye, Route, Users, FileText, Heart, CarFront, Wrench, Shield, Leaf } from "lucide-react"
+
+function ThemeIcon({ iconKey }: { iconKey: string }) {
+  const Icon = THEME_ICONS[iconKey] || FileText
+  return (
+    <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: "var(--color-primary-light)", color: "var(--color-primary)" }}>
+      <Icon size={20} />
+    </div>
+  )
+}
+
+const THEME_ICONS: Record<string, any> = {
+  circulation: TrafficCone,
+  conducteur: Eye,
+  route: Route,
+  usagers: Users,
+  notions: FileText,
+  secours: Heart,
+  vehicule: CarFront,
+  mecanique: Wrench,
+  securite: Shield,
+  environnement: Leaf,
+}
 
 type Progression = Record<string, { total: number; correct: number }>
 
@@ -126,7 +149,7 @@ export default function CodePage() {
                   style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
                   onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-primary)")}
                   onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-border)")}>
-                  <span className="text-2xl">{theme.icon}</span>
+                  <ThemeIcon iconKey={theme.icon} />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold">{theme.label}</p>
                     <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>

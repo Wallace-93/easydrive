@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
+import { Clock, Calendar, CheckCircle, Coins, MessageCircle, User, Car } from "lucide-react"
 import { envoyerNotification } from "@/lib/notifications"
 
 type Reservation = {
@@ -167,13 +168,13 @@ export default function DashboardMoniteur() {
         {/* Statistiques */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "En attente", value: enAttente.length, icon: "⏳" },
-            { label: "À venir", value: confirmees.length, icon: "📅" },
-            { label: "Terminées", value: terminees.length, icon: "✅" },
-            { label: "Revenus nets", value: `${revenus - commission} €`, icon: "💰" },
+            { label: "En attente", value: enAttente.length, icon: <Clock size={20} /> },
+            { label: "À venir", value: confirmees.length, icon: <Calendar size={20} /> },
+            { label: "Terminées", value: terminees.length, icon: <CheckCircle size={20} /> },
+            { label: "Revenus nets", value: `${revenus - commission} €`, icon: <Coins size={20} /> },
           ].map(stat => (
             <div key={stat.label} className="rounded-2xl p-4" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
-              <span className="text-2xl">{stat.icon}</span>
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: "var(--color-primary-light)", color: "var(--color-primary)" }}>{stat.icon}</div>
               <p className="text-2xl font-bold mt-2" style={{ fontFamily: "var(--font-display)" }}>{stat.value}</p>
               <p className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>{stat.label}</p>
             </div>
@@ -224,7 +225,7 @@ export default function DashboardMoniteur() {
               onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-border)")}>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "var(--color-surface-hover)", color: "var(--color-text-secondary)" }}>
-                  <span className="text-lg">🚗</span>
+                  <Car size={20} style={{ color: "var(--color-text-secondary)" }} />
                 </div>
                 <div>
                   <p className="text-sm font-bold">Véhicules double commande</p>
@@ -294,7 +295,7 @@ export default function DashboardMoniteur() {
           <h2 className="text-lg font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>Prochaines leçons</h2>
           {confirmees.length === 0 ? (
             <div className="rounded-2xl p-8 text-center" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
-              <p className="text-3xl mb-3">📅</p>
+              <Calendar size={32} style={{ color: "var(--color-text-muted)", margin: "0 auto 12px" }} />
               <p className="text-sm font-semibold mb-1">Aucune leçon confirmée à venir</p>
               <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
                 Les leçons confirmées apparaîtront ici.

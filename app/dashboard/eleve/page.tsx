@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
+import { Calendar, CheckCircle, Car, ClipboardList, Search, MessageCircle, User, GraduationCap, BarChart3, Lightbulb, Sparkles, Star } from "lucide-react"
 
 type Profil = {
   prenom: string
@@ -139,13 +140,13 @@ export default function DashboardEleve() {
         {/* Statistiques */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "Leçons à venir", value: prochaines.length, icon: "📅" },
-            { label: "Leçons terminées", value: totalHeures, icon: "✅" },
-            { label: "Heures de conduite", value: `${totalHeures}h`, icon: "🚗" },
-            { label: "Réservations", value: reservations.length, icon: "📋" },
+            { label: "Leçons à venir", value: prochaines.length, icon: <Calendar size={20} /> },
+            { label: "Leçons terminées", value: totalHeures, icon: <CheckCircle size={20} /> },
+            { label: "Heures de conduite", value: `${totalHeures}h`, icon: <Car size={20} /> },
+            { label: "Réservations", value: reservations.length, icon: <ClipboardList size={20} /> },
           ].map(stat => (
             <div key={stat.label} className="rounded-2xl p-4" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
-              <span className="text-2xl">{stat.icon}</span>
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: "var(--color-primary-light)", color: "var(--color-primary)" }}>{stat.icon}</div>
               <p className="text-2xl font-bold mt-2" style={{ fontFamily: "var(--font-display)" }}>{stat.value}</p>
               <p className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>{stat.label}</p>
             </div>
@@ -159,7 +160,7 @@ export default function DashboardEleve() {
             onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--color-border)"; e.currentTarget.style.boxShadow = "none" }}>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: "var(--color-primary-light)" }}>
-                <span className="text-2xl">🎓</span>
+                <GraduationCap size={22} style={{ color: "var(--color-primary)" }} />
               </div>
               <div>
                 <p className="text-base font-bold">Code de la route gratuit</p>
@@ -179,7 +180,7 @@ export default function DashboardEleve() {
               onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-primary)")}
               onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-border)")}>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">📊</span>
+                <BarChart3 size={22} style={{ color: "var(--color-text-secondary)" }} />
                 <div>
                   <p className="text-sm font-bold">Ma progression</p>
                   <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>Score, badges et suivi détaillé</p>
@@ -192,7 +193,7 @@ export default function DashboardEleve() {
               onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-primary)")}
               onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-border)")}>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">💡</span>
+                <Lightbulb size={22} style={{ color: "var(--color-text-secondary)" }} />
                 <div>
                   <p className="text-sm font-bold">Conseils et astuces</p>
                   <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>Articles pour réussir votre permis</p>
@@ -209,7 +210,7 @@ export default function DashboardEleve() {
             onMouseLeave={e => (e.currentTarget.style.transform = "none", e.currentTarget.style.boxShadow = "none")}>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.2)" }}>
-                <span className="text-2xl">✨</span>
+                <Sparkles size={22} />
               </div>
               <div>
                 <p className="text-base font-bold" style={{ color: "white" }}>Trouver mon moniteur idéal</p>
@@ -283,7 +284,7 @@ export default function DashboardEleve() {
           <h2 className="text-lg font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>Prochaines leçons</h2>
           {prochaines.length === 0 ? (
             <div className="rounded-2xl p-8 text-center" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
-              <p className="text-3xl mb-3">🗓️</p>
+              <Calendar size={32} style={{ color: "var(--color-text-muted)", margin: "0 auto 12px" }} />
               <p className="text-sm font-semibold mb-1">Aucune leçon prévue</p>
               <p className="text-xs mb-4" style={{ color: "var(--color-text-muted)" }}>
                 Trouvez un moniteur et réservez votre première leçon de conduite.
@@ -376,7 +377,7 @@ export default function DashboardEleve() {
                       {r.statut === "terminee" && (
                         <Link href={`/avis/${r.moniteur_id}`} className="text-xs font-semibold px-3 py-1 rounded-full"
                           style={{ background: "var(--color-primary-light)", color: "var(--color-primary-dark)", textDecoration: "none" }}>
-                          ⭐ Évaluer
+                          ★ Évaluer
                         </Link>
                       )}
                     </div>

@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
+import { MessageCircle } from "lucide-react"
 
 type Conversation = {
   reservation_id: string
@@ -153,7 +154,7 @@ export default function Messages() {
 
         {conversations.length === 0 ? (
           <div className="rounded-2xl p-8 text-center" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
-            <p className="text-3xl mb-3">💬</p>
+            <MessageCircle size={32} style={{ color: "var(--color-text-muted)", margin: "0 auto 12px" }} />
             <p className="text-sm font-semibold mb-1">Aucune conversation</p>
             <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
               {role === "eleve"

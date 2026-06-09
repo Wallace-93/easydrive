@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
+import { Car } from "lucide-react"
 
 type Vehicule = {
   id: string
@@ -141,7 +142,7 @@ export default function Vehicules() {
           </div>
         ) : vehiculesFiltres.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-3xl mb-4">🚗</p>
+            <Car size={32} style={{ color: "var(--color-text-muted)", margin: "0 auto 12px" }} />
             <p className="text-lg font-semibold mb-2">Aucun véhicule disponible</p>
             <p className="text-sm mb-6" style={{ color: "var(--color-text-muted)" }}>
               {vehicules.length === 0
@@ -167,7 +168,7 @@ export default function Vehicules() {
                     {v.photo_url ? (
                       <img src={v.photo_url} alt={`${v.marque} ${v.modele}`} className="w-full h-40 object-cover" />
                     ) : (
-                      <span className="text-4xl">🚗</span>
+                      <Car size={36} style={{ color: "var(--color-text-muted)" }} />
                     )}
                   </div>
                   <div className="p-4">

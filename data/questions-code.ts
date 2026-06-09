@@ -8,16 +8,16 @@ export type Question = {
 }
 
 export const THEMES = [
-  { id: "circulation", label: "La circulation routière", icon: "🚦", description: "Priorités, intersections, signalisation" },
-  { id: "conducteur", label: "Le conducteur", icon: "🧑", description: "Alcool, fatigue, attention, vision" },
-  { id: "route", label: "La route", icon: "🛣️", description: "Types de voies, conditions météo, tunnels" },
-  { id: "usagers", label: "Les autres usagers", icon: "🚶", description: "Piétons, cyclistes, deux-roues, poids lourds" },
-  { id: "notions", label: "Les notions diverses", icon: "📋", description: "Documents, assurance, infractions, permis" },
-  { id: "secours", label: "Les premiers secours", icon: "🩹", description: "Accident, PLS, alerter, protéger" },
-  { id: "vehicule_prise", label: "Prendre et quitter son véhicule", icon: "🚗", description: "Installation, rétroviseurs, angles morts" },
-  { id: "mecanique", label: "La mécanique et les équipements", icon: "🔧", description: "Freins, pneus, éclairage, tableau de bord" },
-  { id: "securite", label: "La sécurité", icon: "🛡️", description: "Ceinture, airbag, enfants, chargement" },
-  { id: "environnement", label: "L'environnement", icon: "🌿", description: "Éco-conduite, pollution, consommation" },
+  { id: "circulation", label: "La circulation routière", icon: "circulation", description: "Priorités, intersections, signalisation" },
+  { id: "conducteur", label: "Le conducteur", icon: "conducteur", description: "Alcool, fatigue, attention, vision" },
+  { id: "route", label: "La route", icon: "route", description: "Types de voies, conditions météo, tunnels" },
+  { id: "usagers", label: "Les autres usagers", icon: "usagers", description: "Piétons, cyclistes, deux-roues, poids lourds" },
+  { id: "notions", label: "Les notions diverses", icon: "notions", description: "Documents, assurance, infractions, permis" },
+  { id: "secours", label: "Les premiers secours", icon: "secours", description: "Accident, PLS, alerter, protéger" },
+  { id: "vehicule_prise", label: "Prendre et quitter son véhicule", icon: "vehicule", description: "Installation, rétroviseurs, angles morts" },
+  { id: "mecanique", label: "La mécanique et les équipements", icon: "mecanique", description: "Freins, pneus, éclairage, tableau de bord" },
+  { id: "securite", label: "La sécurité", icon: "securite", description: "Ceinture, airbag, enfants, chargement" },
+  { id: "environnement", label: "L'environnement", icon: "environnement", description: "Éco-conduite, pollution, consommation" },
 ]
 
 export const QUESTIONS: Question[] = [

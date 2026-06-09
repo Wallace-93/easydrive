@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import { THEMES } from "@/data/questions-code"
 import Link from "next/link"
+import { FileText, Car, Flame, Award, TrafficCone, Eye, Route as RouteIcon, Users, Heart, CarFront, Wrench, Shield, Leaf } from "lucide-react"
 
 type Badge = {
   id: string
@@ -13,6 +14,17 @@ type Badge = {
   icon: string
   description: string
   obtenu: boolean
+}
+
+const PROG_THEME_ICONS: Record<string, any> = {
+  circulation: TrafficCone, conducteur: Eye, route: RouteIcon,
+  usagers: Users, notions: FileText, secours: Heart,
+  vehicule_prise: CarFront, mecanique: Wrench, securite: Shield, environnement: Leaf,
+}
+
+function ProgressThemeIcon({ themeId }: { themeId: string }) {
+  const Icon = PROG_THEME_ICONS[themeId] || FileText
+  return <Icon size={18} style={{ color: "var(--color-primary)" }} />
 }
 
 export default function Progression() {
@@ -194,13 +206,13 @@ export default function Progression() {
         {/* Détail du score */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "Code de la route", value: `${scoreCode}%`, icon: "📝", sub: `${questionsRepondues} questions` },
-            { label: "Leçons terminées", value: nbLeconsTerminees.toString(), icon: "🚗", sub: `${nbLeconsTerminees}h de conduite` },
-            { label: "Série en cours", value: `${streakJours}j`, icon: "🔥", sub: "jours consécutifs" },
-            { label: "Badges obtenus", value: `${badgesObtenus}/${badges.length}`, icon: "🏅", sub: "récompenses" },
+            { label: "Code de la route", value: `${scoreCode}%`, icon: <FileText size={20} />, sub: `${questionsRepondues} questions` },
+            { label: "Leçons terminées", value: nbLeconsTerminees.toString(), icon: <Car size={20} />, sub: `${nbLeconsTerminees}h de conduite` },
+            { label: "Série en cours", value: `${streakJours}j`, icon: <Flame size={20} />, sub: "jours consécutifs" },
+            { label: "Badges obtenus", value: `${badgesObtenus}/${badges.length}`, icon: <Award size={20} />, sub: "récompenses" },
           ].map(s => (
             <div key={s.label} className="rounded-2xl p-4 text-center" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
-              <span className="text-2xl">{s.icon}</span>
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: "var(--color-primary-light)", color: "var(--color-primary)" }}>{s.icon}</div>
               <p className="text-xl font-bold mt-2" style={{ fontFamily: "var(--font-display)" }}>{s.value}</p>
               <p className="text-[10px] mt-0.5" style={{ color: "var(--color-text-muted)" }}>{s.sub}</p>
             </div>
@@ -256,7 +268,7 @@ export default function Progression() {
 
             return (
               <div key={theme.id} className="flex items-center gap-3 py-2.5" style={{ borderBottom: "1px solid var(--color-border)" }}>
-                <span className="text-lg">{theme.icon}</span>
+                <ProgressThemeIcon themeId={theme.id} />
                 <span className="text-sm font-medium flex-1">{theme.label}</span>
                 <div className="w-24 h-2 rounded-full" style={{ background: "var(--color-border)" }}>
                   <div className="h-2 rounded-full transition-all" style={{

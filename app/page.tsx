@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
+import { Target, BarChart3, Coins, MapPin, Sparkles, MessageCircle, GraduationCap, Car, Users, Clock, Shield, Zap, ChevronDown } from "lucide-react"
 
 const SLOGANS = [
   { debut: "Choisissez votre moniteur,", accent: "pas votre auto-école." },
@@ -54,6 +55,88 @@ function SloganCarousel() {
   )
 }
 
+const FAQ_ITEMS = [
+  {
+    question: "Just Conduite est-il une vraie auto-école ?",
+    reponse: "Just Conduite est une plateforme de mise en relation entre des élèves et des moniteurs indépendants diplômés d'État (BEPECASER ou Titre Pro ECSR). Chaque moniteur est vérifié avant d'être activé sur la plateforme. Vous bénéficiez du même cadre légal qu'en auto-école traditionnelle, avec plus de flexibilité et des tarifs plus justes.",
+  },
+  {
+    question: "Pourquoi c'est moins cher qu'une auto-école classique ?",
+    reponse: "Une auto-école traditionnelle a des charges importantes : loyer, secrétariat, gestion du parc de véhicules. Ces coûts se répercutent sur le prix de vos leçons. Chez Just Conduite, le moniteur travaille en indépendant et nous ne prélevons que 15 % de commission (contre 40 à 50 % chez nos concurrents en ligne). Le résultat : le moniteur gagne plus, et vous payez moins.",
+  },
+  {
+    question: "Les moniteurs sont-ils vraiment qualifiés ?",
+    reponse: "Absolument. Chaque moniteur doit fournir son diplôme (BEPECASER ou Titre Pro ECSR) lors de son inscription. Notre équipe vérifie chaque document avant d'activer le profil. De plus, les avis laissés par les élèves après chaque leçon garantissent un niveau de qualité constant.",
+  },
+  {
+    question: "Le code de la route est vraiment gratuit ?",
+    reponse: "Oui, l'accès à notre entraînement au code de la route est entièrement gratuit, sans limite de temps ni de tentatives. Vous avez accès à des dizaines de questions réparties en 10 thèmes officiels, des examens blancs et un suivi de votre progression. Pas besoin de créer un compte pour commencer.",
+  },
+  {
+    question: "Que se passe-t-il si je ne suis pas satisfait de mon moniteur ?",
+    reponse: "Vous n'avez aucun engagement. Vous pouvez changer de moniteur à tout moment, sans frais et sans justification. C'est l'un des avantages majeurs de Just Conduite par rapport aux auto-écoles traditionnelles où vous êtes lié à un seul établissement.",
+  },
+  {
+    question: "Comment se passe la réservation ?",
+    reponse: "Vous choisissez votre moniteur, sélectionnez une date, un créneau horaire et un lieu de rendez-vous. Le moniteur reçoit votre demande et la confirme sous 24 heures. Vous pouvez réserver des leçons de 1 ou 2 heures, jusqu'à 22 heures le soir.",
+  },
+  {
+    question: "Qui fournit le véhicule pour les leçons ?",
+    reponse: "Le moniteur dispose de son propre véhicule à double commande, équipé pour l'enseignement de la conduite. Certains moniteurs proposent également la location de leur véhicule à d'autres enseignants via notre marketplace dédiée.",
+  },
+  {
+    question: "Comment Just Conduite se compare à Ornikar ou En Voiture Simone ?",
+    reponse: "La différence principale est la commission. Ornikar et En Voiture Simone prélèvent 40 à 50 % sur chaque heure de leçon, ce qui oblige les moniteurs à augmenter leurs tarifs. Chez Just Conduite, la commission est de 15 %. Résultat : les moniteurs sont mieux rémunérés, plus motivés, et vos leçons coûtent moins cher. De plus, nous nous concentrons sur l'Île-de-France, y compris la grande couronne souvent délaissée par les plateformes nationales.",
+  },
+  {
+    question: "Puis-je passer l'examen avec Just Conduite ?",
+    reponse: "Votre moniteur vous prépare à l'examen et vous accompagne dans les démarches. L'inscription à l'examen du permis se fait sur le site de l'ANTS (Agence Nationale des Titres Sécurisés). Votre moniteur peut vous guider dans cette procédure si besoin.",
+  },
+  {
+    question: "Quels moyens de paiement acceptez-vous ?",
+    reponse: "Le paiement se fait directement entre vous et votre moniteur. Nous travaillons actuellement à l'intégration d'un système de paiement en ligne sécurisé pour simplifier les transactions. Les demandeurs d'emploi peuvent utiliser leur CPF pour financer leur formation.",
+  },
+]
+
+function FaqAccordion() {
+  const [ouvert, setOuvert] = useState<number | null>(null)
+
+  return (
+    <div className="flex flex-col gap-2">
+      {FAQ_ITEMS.map((item, i) => (
+        <div key={i} className="rounded-xl overflow-hidden" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
+          <button
+            onClick={() => setOuvert(ouvert === i ? null : i)}
+            className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+            style={{ background: "none", border: "none", cursor: "pointer" }}
+          >
+            <span className="text-sm font-semibold" style={{ color: "var(--color-text)" }}>{item.question}</span>
+            <ChevronDown
+              size={18}
+              style={{
+                color: "var(--color-text-muted)",
+                flexShrink: 0,
+                transition: "transform 0.3s ease",
+                transform: ouvert === i ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+            />
+          </button>
+          <div style={{
+            maxHeight: ouvert === i ? "500px" : "0px",
+            overflow: "hidden",
+            transition: "max-height 0.3s ease, padding 0.3s ease",
+          }}>
+            <p className="text-sm leading-relaxed px-5 pb-4" style={{ color: "var(--color-text-secondary)" }}>
+              {item.reponse}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+
 export default function Home() {
   const [user, setUser] = useState<any>(null)
 
@@ -78,6 +161,7 @@ export default function Home() {
             <a href="#fonctionnement" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Comment ça marche</a>
             <a href="#moniteurs" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Moniteurs</a>
             <Link href="/code" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Code gratuit</Link>
+            <a href="#faq" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>FAQ</a>
           </nav>
           <div className="flex items-center gap-3">
             {user ? (
@@ -101,7 +185,7 @@ export default function Home() {
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-xs font-semibold"
             style={{ background: "var(--color-primary-light)", color: "var(--color-primary-dark)" }}>
-            🚗 La nouvelle auto-école en Île-de-France
+            La nouvelle auto-école en Île-de-France
           </div>
           <SloganCarousel />
           <p className="text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto" style={{ color: "var(--color-text-secondary)" }}>
@@ -155,43 +239,43 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: "🎯",
+                icon: <Target size={24} />,
                 titre: "Le moniteur-coach",
                 desc: "Choisissez votre moniteur selon son profil, ses spécialités et les avis des autres élèves. Pas de moniteur imposé.",
               },
               {
-                icon: "📊",
+                icon: <BarChart3 size={24} />,
                 titre: "Suivi pédagogique",
                 desc: "Un carnet de bord digital pour suivre votre progression. Visualisez vos compétences acquises après chaque leçon.",
               },
               {
-                icon: "💰",
+                icon: <Coins size={24} />,
                 titre: "Tarifs justes",
                 desc: "Nos moniteurs fixent leurs prix. Avec seulement 15 % de commission, ils gagnent plus et vous payez moins.",
               },
               {
-                icon: "📍",
+                icon: <MapPin size={24} />,
                 titre: "Île-de-France",
                 desc: "Paris et toute la grande couronne : de Cergy à Melun, de Versailles à Meaux. Là où les autres sont absents.",
               },
               {
-                icon: "✨",
+                icon: <Sparkles size={24} />,
                 titre: "Matching intelligent",
                 desc: "Notre algorithme analyse vos besoins, vos disponibilités et les avis des élèves pour vous recommander les 3 moniteurs les plus adaptés.",
               },
               {
-                icon: "💬",
+                icon: <MessageCircle size={24} />,
                 titre: "Messagerie directe",
                 desc: "Communiquez directement avec votre moniteur. Pas de standard téléphonique, pas de formulaire, un vrai échange.",
               },
               {
-                icon: "🎓",
+                icon: <GraduationCap size={24} />,
                 titre: "Code gratuit",
                 desc: "Accédez à des milliers de questions pour préparer votre examen du code de la route, gratuitement.",
               },
             ].map(a => (
               <div key={a.titre} className="rounded-2xl p-6" style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
-                <span className="text-3xl">{a.icon}</span>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "var(--color-primary-light)", color: "var(--color-primary)" }}>{a.icon}</div>
                 <h3 className="text-base font-bold mt-4 mb-2">{a.titre}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>{a.desc}</p>
               </div>
@@ -240,6 +324,23 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ fontFamily: "var(--font-display)" }}>
+              Questions fréquentes
+            </h2>
+            <p className="text-base max-w-xl mx-auto" style={{ color: "var(--color-text-secondary)" }}>
+              Tout ce que vous devez savoir avant de commencer.
+            </p>
+          </div>
+
+          <FaqAccordion />
         </div>
       </section>
 
