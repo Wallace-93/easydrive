@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
-import { BackgroundScene } from "@/components/background-scene"
 import { Target, BarChart3, Coins, MapPin, Sparkles, MessageCircle, GraduationCap, Car, Users, Clock, Shield, Zap, ChevronDown } from "lucide-react"
 
 const SLOGANS = [
@@ -148,12 +147,11 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--color-background)", position: "relative" }}>
+    <div className="min-h-screen" style={{ background: "var(--color-background)" }}>
 
-      <BackgroundScene />
 
       {/* Navigation */}
-      <header style={{ position: "relative", zIndex: 10 }} className="fixed top-0 w-full z-50 border-b" style={{ borderColor: "var(--color-border)", background: "rgba(248,250,251,0.9)", backdropFilter: "blur(12px)" }}>
+      <header className="fixed top-0 w-full z-50 border-b" style={{ borderColor: "var(--color-border)", background: "rgba(248,250,251,0.9)", backdropFilter: "blur(12px)" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)" }}>
             <span className="text-xl font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
@@ -164,6 +162,7 @@ export default function Home() {
             <a href="#fonctionnement" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Comment ça marche</a>
             <a href="#moniteurs" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Moniteurs</a>
             <Link href="/code" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Code gratuit</Link>
+            <Link href="/simulation" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>Simulations</Link>
             <a href="#faq" className="text-sm font-medium" style={{ color: "var(--color-text-secondary)", textDecoration: "none" }}>FAQ</a>
           </nav>
           <div className="flex items-center gap-3">
@@ -184,7 +183,7 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section style={{ position: "relative", zIndex: 1 }} className="pt-28 sm:pt-36 pb-20 px-4 sm:px-6">
+      <section className="pt-28 sm:pt-36 pb-20 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-xs font-semibold"
             style={{ background: "var(--color-primary-light)", color: "var(--color-primary-dark)" }}>
@@ -210,7 +209,7 @@ export default function Home() {
       </section>
 
       {/* Chiffres clés */}
-      <section style={{ position: "relative", zIndex: 1 }} className="py-16 px-4 sm:px-6" style={{ background: "var(--color-surface)" }}>
+      <section className="py-16 px-4 sm:px-6" style={{ background: "var(--color-surface)" }}>
         <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
           {[
             { value: "15 %", label: "De commission seulement", sub: "Vs 40-50 % chez les concurrents" },
@@ -228,7 +227,7 @@ export default function Home() {
       </section>
 
       {/* Avantages */}
-      <section id="avantages" style={{ position: "relative", zIndex: 1 }} className="py-20 px-4 sm:px-6">
+      <section id="avantages" className="py-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ fontFamily: "var(--font-display)" }}>
@@ -288,7 +287,7 @@ export default function Home() {
       </section>
 
       {/* Comment ça marche */}
-      <section id="fonctionnement" style={{ position: "relative", zIndex: 1 }} className="py-20 px-4 sm:px-6" style={{ background: "var(--color-surface)" }}>
+      <section id="fonctionnement" className="py-20 px-4 sm:px-6" style={{ background: "var(--color-surface)" }}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ fontFamily: "var(--font-display)" }}>
@@ -332,7 +331,7 @@ export default function Home() {
 
 
       {/* FAQ */}
-      <section id="faq" style={{ position: "relative", zIndex: 1 }} className="py-20 px-4 sm:px-6">
+      <section id="faq" className="py-20 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ fontFamily: "var(--font-display)" }}>
@@ -348,7 +347,7 @@ export default function Home() {
       </section>
 
       {/* CTA Moniteurs */}
-      <section id="moniteurs" style={{ position: "relative", zIndex: 1 }} className="py-20 px-4 sm:px-6">
+      <section id="moniteurs" className="py-20 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <div className="rounded-2xl p-8 sm:p-12 text-center" style={{ background: "var(--color-primary-light)", border: "1px solid rgba(0,179,125,0.2)" }}>
             <h2 className="text-2xl sm:text-3xl font-extrabold mb-4" style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}>
@@ -369,7 +368,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer style={{ position: "relative", zIndex: 1 }} className="py-12 px-4 sm:px-6 border-t" style={{ borderColor: "var(--color-border)" }}>
+      <footer className="py-12 px-4 sm:px-6 border-t" style={{ borderColor: "var(--color-border)" }}>
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-baseline gap-1" style={{ fontFamily: "var(--font-display)" }}>
             <span className="text-lg font-extrabold" style={{ color: "var(--color-primary)" }}>Just</span>
