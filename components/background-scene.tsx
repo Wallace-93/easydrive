@@ -70,7 +70,7 @@ export function BackgroundScene() {
       <svg
         viewBox={`0 0 500 ${svgHeight * 0.9}`}
         preserveAspectRatio="xMidYMin slice"
-        style={{ width: "100%", height: "100%", opacity: 0.045 }}
+        style={{ width: "100%", height: "100%", opacity: 0.10 }}
       >
         <defs>
           {/* Motif herbe */}
