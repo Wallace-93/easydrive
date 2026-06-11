@@ -19,39 +19,15 @@ type Level = {
 
 const LEVELS: Level[] = [
   {
-    id: "marche_arriere",
-    nom: "Marche arrière",
-    description: "Reculez en ligne droite jusqu'à la zone verte.",
-    car: { x: 300, y: 100, angle: 180 },
-    target: { x: 270, y: 380, w: 60, h: 80, angle: 180 },
-    obstacles: [
-      { x: 220, y: 50, w: 20, h: 450, type: "wall" },
-      { x: 360, y: 50, w: 20, h: 450, type: "wall" },
-    ],
-    walls: [],
-  },
-  {
-    id: "demi_tour",
-    nom: "Demi-tour",
-    description: "Effectuez un demi-tour dans cette rue étroite.",
-    car: { x: 150, y: 400, angle: 0 },
-    target: { x: 120, y: 60, w: 70, h: 80, angle: 180 },
-    obstacles: [
-      { x: 30, y: 0, w: 20, h: 500, type: "wall" },
-      { x: 250, y: 0, w: 20, h: 500, type: "wall" },
-    ],
-    walls: [],
-  },
-  {
     id: "creneau_droite",
     nom: "Créneau à droite",
     description: "Garez-vous entre les deux véhicules sur votre droite.",
-    car: { x: 180, y: 200, angle: 0 },
-    target: { x: 365, y: 200, w: 55, h: 90, angle: 0 },
+    car: { x: 180, y: 220, angle: 0 },
+    target: { x: 352, y: 195, w: 58, h: 100, angle: 0 },
     obstacles: [
-      { x: 360, y: 80, w: 50, h: 85, type: "car" },
-      { x: 360, y: 320, w: 50, h: 85, type: "car" },
-      { x: 430, y: 0, w: 20, h: 500, type: "wall" },
+      { x: 348, y: 60, w: 55, h: 90, type: "car" },
+      { x: 348, y: 340, w: 55, h: 90, type: "car" },
+      { x: 430, y: 0, w: 25, h: 500, type: "wall" },
     ],
     walls: [],
   },
@@ -59,38 +35,12 @@ const LEVELS: Level[] = [
     id: "creneau_gauche",
     nom: "Créneau à gauche",
     description: "Garez-vous entre les deux véhicules sur votre gauche.",
-    car: { x: 300, y: 200, angle: 0 },
-    target: { x: 75, y: 200, w: 55, h: 90, angle: 0 },
+    car: { x: 310, y: 220, angle: 0 },
+    target: { x: 85, y: 195, w: 58, h: 100, angle: 0 },
     obstacles: [
-      { x: 70, y: 80, w: 50, h: 85, type: "car" },
-      { x: 70, y: 320, w: 50, h: 85, type: "car" },
-      { x: 30, y: 0, w: 20, h: 500, type: "wall" },
-    ],
-    walls: [],
-  },
-  {
-    id: "bataille",
-    nom: "Rangement en bataille",
-    description: "Garez-vous perpendiculairement entre les deux véhicules.",
-    car: { x: 250, y: 350, angle: 0 },
-    target: { x: 220, y: 60, w: 65, h: 90, angle: 90 },
-    obstacles: [
-      { x: 140, y: 40, w: 50, h: 100, type: "car" },
-      { x: 310, y: 40, w: 50, h: 100, type: "car" },
-      { x: 0, y: 0, w: 500, h: 20, type: "wall" },
-    ],
-    walls: [],
-  },
-  {
-    id: "epi",
-    nom: "Rangement en épi",
-    description: "Garez-vous en épi entre les deux véhicules (en biais).",
-    car: { x: 250, y: 380, angle: 0 },
-    target: { x: 230, y: 75, w: 60, h: 85, angle: 45 },
-    obstacles: [
-      { x: 130, y: 30, w: 45, h: 95, type: "car" },
-      { x: 340, y: 50, w: 45, h: 95, type: "car" },
-      { x: 0, y: 0, w: 500, h: 15, type: "wall" },
+      { x: 80, y: 60, w: 55, h: 90, type: "car" },
+      { x: 80, y: 340, w: 55, h: 90, type: "car" },
+      { x: 40, y: 0, w: 25, h: 500, type: "wall" },
     ],
     walls: [],
   },
@@ -174,11 +124,11 @@ export default function Manoeuvres() {
         moved = true
       }
       if (keys.has("ArrowLeft") || keys.has("q")) {
-        na -= turnSpeed
+        na += turnSpeed
         moved = true
       }
       if (keys.has("ArrowRight") || keys.has("d")) {
-        na += turnSpeed
+        na -= turnSpeed
         moved = true
       }
 
@@ -208,10 +158,19 @@ export default function Manoeuvres() {
 
       // Vérifier si la voiture est dans la zone cible
       const t = level.target
-      const dist = Math.sqrt((nx - (t.x + t.w / 2)) ** 2 + (ny - (t.y + t.h / 2)) ** 2)
-      const angleDiff = Math.abs(((na - t.angle + 180) % 360) - 180)
+      const targetCX = t.x + t.w / 2
+      const targetCY = t.y + t.h / 2
+      const dx = Math.abs(nx - targetCX)
+      const dy = Math.abs(ny - targetCY)
+      const isInZone = dx < t.w * 0.6 && dy < t.h * 0.55
 
-      if (dist < 30 && angleDiff < 25) {
+      // Normaliser la différence d'angle entre -180 et 180
+      let angleDiff = ((na % 360) - t.angle) % 360
+      if (angleDiff > 180) angleDiff -= 360
+      if (angleDiff < -180) angleDiff += 360
+      const isAligned = Math.abs(angleDiff) < 30 || Math.abs(Math.abs(angleDiff) - 360) < 30
+
+      if (isInZone && isAligned) {
         setGameState("won")
         return
       }
