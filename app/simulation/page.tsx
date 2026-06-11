@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
-import { Car, Eye, Lock, Star, Gamepad2 } from "lucide-react"
+import { Car, Eye, Lock, Star, Gamepad2, AlertTriangle, SignpostBig } from "lucide-react"
 
 export default function Simulation() {
   const [user, setUser] = useState<any>(null)
@@ -68,6 +68,24 @@ export default function Simulation() {
       niveaux: "12 scénarios",
       difficulte: "3 niveaux",
       href: "/simulation/conduite",
+    },
+    {
+      id: "dangers",
+      titre: "Perception des dangers",
+      description: "Observez des scènes de conduite et repérez les dangers le plus vite possible. Testez vos réflexes et votre vigilance.",
+      icon: <AlertTriangle size={28} />,
+      niveaux: "8 scènes",
+      difficulte: "Réflexes",
+      href: "/simulation/dangers",
+    },
+    {
+      id: "signalisation",
+      titre: "Lecture de signalisation",
+      description: "Identifiez les panneaux de signalisation routière. Mode classique ou mode flash où le panneau disparaît après 3 secondes.",
+      icon: <SignpostBig size={28} />,
+      niveaux: "20 panneaux",
+      difficulte: "2 modes",
+      href: "/simulation/signalisation",
     },
   ]
 

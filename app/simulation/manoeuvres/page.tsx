@@ -124,11 +124,11 @@ export default function Manoeuvres() {
         moved = true
       }
       if (keys.has("ArrowLeft") || keys.has("q")) {
-        na += turnSpeed
+        na -= turnSpeed
         moved = true
       }
       if (keys.has("ArrowRight") || keys.has("d")) {
-        na -= turnSpeed
+        na += turnSpeed
         moved = true
       }
 
