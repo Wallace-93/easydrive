@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
-import { Calendar, CheckCircle, Car, ClipboardList, Search, MessageCircle, User, GraduationCap, BarChart3, Lightbulb, Sparkles, Star, Gamepad2 } from "lucide-react"
+import { Calendar, CheckCircle, Car, ClipboardList, Search, MessageCircle, User, GraduationCap, BarChart3, Lightbulb, Sparkles, Star, Gamepad2, Gift } from "lucide-react"
 
 type Profil = {
   prenom: string
@@ -298,6 +298,26 @@ export default function DashboardEleve() {
             </div>
           </Link>
         </div>
+
+        {/* Parrainage */}
+        <Link href="/parrainage" style={{ textDecoration: "none" }}>
+          <div className="rounded-2xl p-5 mb-8 transition-all" style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)", border: "none" }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(245,158,11,0.3)" }}
+            onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none" }}>
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.2)" }}>
+                <Gift size={20} style={{ color: "white" }} />
+              </div>
+              <div>
+                <p className="text-sm font-bold" style={{ color: "white" }}>Parrainez, gagnez 15 €</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.8)" }}>Invitez un proche et gagnez 15 € dès sa 1ère leçon</p>
+              </div>
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5" className="flex-shrink-0 ml-auto">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </Link>
 
         {/* Prochaines leçons */}
         <div className="mb-8">

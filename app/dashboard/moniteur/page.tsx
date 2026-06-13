@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase-client"
 import Link from "next/link"
-import { Clock, Calendar, CheckCircle, Coins, MessageCircle, User, Car } from "lucide-react"
+import { Clock, Calendar, CheckCircle, Coins, MessageCircle, User, Car, Gift } from "lucide-react"
 import { envoyerNotification } from "@/lib/notifications"
 
 type Reservation = {
@@ -235,6 +235,23 @@ export default function DashboardMoniteur() {
             </div>
           </Link>
         </div>
+
+        {/* Parrainage */}
+        <Link href="/parrainage" style={{ textDecoration: "none" }}>
+          <div className="rounded-2xl p-5 mb-8 transition-all" style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)", border: "none" }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(245,158,11,0.3)" }}
+            onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none" }}>
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.2)" }}>
+                <Gift size={20} style={{ color: "white" }} />
+              </div>
+              <div>
+                <p className="text-sm font-bold" style={{ color: "white" }}>Parrainez un collègue, gagnez 15 €</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.8)" }}>Invitez un moniteur et gagnez dès sa 1ère leçon</p>
+              </div>
+            </div>
+          </div>
+        </Link>
 
         {/* Demandes en attente */}
         {enAttente.length > 0 && (

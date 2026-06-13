@@ -85,6 +85,7 @@ export default function Inscription() {
     budget: "",
     creneaux: [] as string[],
     besoins: [] as string[],
+    codeParrain: "",
   })
 
   function updateForm(field: string, value: any) {
@@ -215,6 +216,44 @@ export default function Inscription() {
       setError("Erreur lors de l'enregistrement de vos préférences : " + eleveError.message)
       setLoading(false)
       return
+    }
+
+    // Enregistrer le parrainage si un code est fourni
+    if (form.codeParrain.trim()) {
+      const code = form.codeParrain.trim().toUpperCase()
+      // Trouver le parrain par son code (les 8 premiers caractères de son ID)
+      const { data: allProfiles } = await supabase.from("profiles").select("id")
+      if (allProfiles) {
+        const parrain = allProfiles.find(p => p.id.substring(0, 8).toUpperCase() === code)
+        if (parrain && parrain.id !== userId) {
+          // Créer le parrainage niveau 1
+          await supabase.from("parrainages").insert({
+            parrain_id: parrain.id,
+            filleul_id: userId,
+            niveau: 1,
+            statut: "inscrit",
+            montant: 15,
+          })
+
+          // Vérifier si le parrain a lui-même un parrain (niveau 2)
+          const { data: parrainDuParrain } = await supabase
+            .from("parrainages")
+            .select("parrain_id")
+            .eq("filleul_id", parrain.id)
+            .eq("niveau", 1)
+            .single()
+
+          if (parrainDuParrain) {
+            await supabase.from("parrainages").insert({
+              parrain_id: parrainDuParrain.parrain_id,
+              filleul_id: userId,
+              niveau: 2,
+              statut: "inscrit",
+              montant: 5,
+            })
+          }
+        }
+      }
     }
 
     setSuccess(true)
